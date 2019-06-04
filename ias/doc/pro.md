@@ -35,9 +35,14 @@ Eine weitere Möglichkeit der Interaktion ist die Einteilung der einzelnen Halle
 
 ### Allgemeine Beschreibung
 
+Der Aussteller ist ein registrierter Benutzer des Messeplanners. Er kann freie Flächen buchen, um dort seine Produkte und Leistungen zu präsentieren.
+
 ### Beschreibung Persona
 
 ### Interaktionsdesign
+
+Nachdem sich der Aussteller eingeloggt hat, wird er auf eine neue Seite geleitet. Auf dieser Seite werden ihm seine bisherigen Buchungen angezeigt, die er bis dahin erstellt hat. Diese Seite dient lediglich als Übersicht. Möchte der Aussteller weitere Flächen buchen oder bereits erstellte Buchungen bearbeiten, so muss er zu der jeweiligen Hallenübersicht gehen.
+In der Hallenübersicht werden gebuchte Flächen grün angezeigt. Flächen die nicht zur Auswahl stehen sind rot oder grau markiert. Der Aussteller kann freie oder gebuchte Flächen auswählen um nähere Informationen zu der Auswahl zu bekommen und entscheiden, ob er diese Fläche buchen bzw. stornieren möchte.
 
 #### Übersicht Interaktionen
 
@@ -47,8 +52,12 @@ Eine weitere Möglichkeit der Interaktion ist die Einteilung der einzelnen Halle
 
 ### Allgemeine Beschreibung
 
+Der Besucher ist kein registrierter Benutzer. Er kann auf die Hallenpläne zugreifen und kann nach Ausstellern suchen.
+
 ### Beschreibung Persona
 
 ### Interaktionsdesign
+
+Dem Besucher ist es möglich sich über die Angebote einer Messe einen Überblick zu machen. Er kann zwischen den verschiedenen Hallen navigieren und sich Detailinformationen zu einer ausgewählten Fläche anzeigen lassen. Außerdem kann der Besucher gezielt nach Ausstellern suchen. Wenn der gesuchte Aussteller eine Fläche gebucht hat, so wird diese farblich hervorgehoben.
 
 #### Übersicht Interaktionen
