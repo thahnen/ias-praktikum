@@ -102,9 +102,13 @@ In der Hallenübersicht werden gebuchte Flächen grün angezeigt. Flächen die n
 
 ### Allgemeine Beschreibung
 
+Die Besucher sind eine der drei Gruppen in diesem Szenario.
+
 Der Besucher ist kein registrierter Benutzer. Er kann auf die Hallenpläne zugreifen und kann nach Ausstellern suchen.
 
 ### Beschreibung Persona
+
+Die Intention des Besuchers ist die, sich über kommende Messen und ihre Aussteller zu informieren.
 
 ### Interaktionsdesign
 
