@@ -2,8 +2,17 @@ figure, figure img {
    margin-left: auto;
    margin-right: auto;
    text-align: center; /* zur Zentrierung des img-Elements */
-   width: 15cm;
 }
+
 figcaption {
    text-align: center;
+}
+
+img {
+   max-width: 90vw;
+   height: auto;
+}
+
+h1, h2, h3, h4 {
+   text-decoration: underline;
 }
