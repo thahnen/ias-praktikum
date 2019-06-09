@@ -1,0 +1,24 @@
+{
+    "Template": {
+        "unique_id": "Eindeutige Id des SW-Entwickler (int)",
+        "username": "Benutzername des SW-Entwickler (string)",
+        "password": "Password-Hash des SW-Entwickler zur Authentifikation (string)"
+    },
+    "Elements": {
+        "1": {
+            "unique_id": 1,
+            "username": "ma1",
+            "password": "9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08"
+        },
+        "2": {
+            "unique_id": 2,
+            "username": "ma2",
+            "password": "9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08"
+        },
+        "3": {
+            "unique_id": 3,
+            "username": "ma3",
+            "password": "9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08"
+        }
+    }
+}
