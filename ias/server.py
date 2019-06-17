@@ -108,7 +108,7 @@ if __name__ == '__main__':
 
     cherrypy.tree.mount(WebServer(logic), "/", config=config)
     cherrypy.tree.mount(app.Templates(logic), "/templates", config=config_rest)
-    #cherrypy.tree.mount(app.Hallen(logic), "/hallen", config=config_rest)
+    cherrypy.tree.mount(app.Hallen(logic), "/hallen", config=config_rest)
 
     cherrypy.engine.start()
     cherrypy.engine.block()
