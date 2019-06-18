@@ -31,18 +31,17 @@ class Application(object):
 
 
     # Handhabt den Login-Vorgang
-    # TODO: hier noch anpassen zu Ausstellern/ Mitarbeitern
     def eval_login(self, username :str, password :str, cookie :bool = False):
         try:
-            code1, qs_mitarbeiter_data = self.get_values("qs-mitarbeiter.json", None)
-            code2, sw_entwickler_data = self.get_values("sw-entwickler.json", None)
+            code1, mitarbeiter = self.get_values("mitarbeiter.json", None)
+            code2, aussteller = self.get_values("aussteller.json", None)
 
             if code1 in [200, 204]:
-                if code1 == 204: qs_mitarbeiter_data = {}
+                if code1 == 204: mitarbeiter = {}
             else: raise Exception
 
             if code2 in [200, 204]:
-                if code2 == 204: sw_entwickler_data = {}
+                if code2 == 204: aussteller = {}
             else: raise Exception
         except Exception:
             # Irgendein Fehler ist aufgetreten
@@ -55,17 +54,17 @@ class Application(object):
             password_hash = password
 
         found :bool = None
-        for elem in qs_mitarbeiter_data:
-            if qs_mitarbeiter_data[elem]["username"] == username and qs_mitarbeiter_data[elem]["password"] == password_hash:
-                found = "QSM"
+        for elem in mitarbeiter:
+            if mitarbeiter[elem]["username"] == username and mitarbeiter[elem]["password"] == password_hash:
+                found = "Mitarbeiter"
 
-        if found == "QSM": return [200, found, password_hash]
+        if found == "Mitarbeiter": return [200, found, password_hash]
 
-        for elem in sw_entwickler_data:
-            if sw_entwickler_data[elem]["username"] == username and sw_entwickler_data[elem]["password"] == password_hash:
-                found = "SWE"
+        for elem in aussteller:
+            if aussteller[elem]["username"] == username and aussteller[elem]["password"] == password_hash:
+                found = "Aussteller"
 
-        if found == "SWE": return [200, found, password_hash]
+        if found == "Aussteller": return [200, found, password_hash]
 
         return [404, None, None]
 
@@ -107,13 +106,6 @@ class Application(object):
             return [204, None]
         elif unique_id == None and len(data) != 0:
             return [200, data]
-        elif unique_id != None and len(data) == 0:
-            return [404, None]
-
-        # Spezielle Fehlerkategorie (falls vorhanden) zurückgeben
-        for elem in data:
-            if int(data[elem]["unique_id"]) == unique_id:
-                return [200, data[elem]]
 
         return [404, None]
 

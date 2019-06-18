@@ -41,10 +41,11 @@ class WebServer(object):
                 return self.application.get_static_page("mp-mitarbeiter")
 
         self.application.setCookies(False)
-        return self.application.get_static_page("backward")
+        return self.application.get_static_page("mp-besucher")
 
 
     # Login-Seite des Webservers, um sich zu authentifizieren
+    # TODO: kann bestimmt noch irgendwie zusammengefasst werden
     @cherrypy.expose
     def login(self) -> str:
         # Auswertung Cookie falls vorhanden!
@@ -52,10 +53,10 @@ class WebServer(object):
         if "type" in cookie and "username" in cookie and "password" in cookie:
             code, _, _ = self.application.eval_login(cookie["username"].value, cookie["password"].value, True)
             if code == 200:
-                return self.application.get_static_page("forward")
+                return self.application.get_static_page("back_to_homepage")
 
         self.application.setCookies(False)
-        return self.application.get_static_page("index")
+        return self.application.get_static_page("back_to_homepage")
 
 
     # Nur POST-Verarbeitung der Benutzereingaben
@@ -65,10 +66,9 @@ class WebServer(object):
             code, user_type, password_hash = self.application.eval_login(username, password)
             if code == 200:
                 self.application.setCookies(True, user_type, username, password_hash)
-                return self.application.get_static_page("forward")
-
-            self.application.setCookies(False)
-            return self.application.get_static_page("backward")
+            else:
+                self.application.setCookies(False)
+            return self.application.get_static_page("back_to_homepage")
         return self.application.get_static_page("404")
 
 
@@ -77,7 +77,7 @@ class WebServer(object):
     def eval_logout(self) -> str:
         if cherrypy.request.method == "POST":
             self.application.setCookies(False)
-            return self.application.get_static_page("backward")
+            return self.application.get_static_page("back_to_homepage")
         return self.application.get_static_page("404")
 
 

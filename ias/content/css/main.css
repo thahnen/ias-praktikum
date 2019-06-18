@@ -1,0 +1,53 @@
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    position: absolute;
+    height: 15vh;
+    background-color: blue;
+    color: white;
+}
+
+.div--headline {
+    position: absolute;
+    width: 80vw;
+    height: inherit;
+    background-color: inherit;
+    border-bottom: 2px solid black;
+}
+
+h1 { margin-left: 0.5vw; }
+
+.div--logout {
+    position: absolute;
+    left: 80vw;
+    width: 20vw;
+    height: inherit;
+    background-color: inherit;
+    border-bottom: 2px solid black;
+}
+
+aside {
+   position: absolute;
+   top: 15vh;
+   left: 0;
+   width: 20vw;
+   bottom: 0;
+   background-color: lightgrey;
+   color: blue;
+   border-right: 2px solid black;
+}
+
+main {
+   position: absolute;
+   top: 15vh;
+   left: 20vw;
+   right: 0;
+   bottom: 0;
+}
+
+table, th, td { border: 1px solid gray; }

@@ -1,8 +1,8 @@
 {
     "Template": {
-        "unique_id": "Eindeutige Id des QS-Mitarbeiter (int)",
-        "username": "Benutzername des QS-Mitarbeiter (string)",
-        "password": "Password-Hash des QS-Mitarbeiter zur Authentifikation (string)"
+        "unique_id": "Eindeutige Id des Ausstellers (int)",
+        "username": "Benutzername des Ausstellers (string)",
+        "password": "Password-Hash des Ausstellers zur Authentifikation (string)"
     },
     "Elements": {
         "1": {

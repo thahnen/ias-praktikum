@@ -1,8 +1,8 @@
 {
     "Template": {
-        "unique_id": "Eindeutige Id des SW-Entwickler (int)",
-        "username": "Benutzername des SW-Entwickler (string)",
-        "password": "Password-Hash des SW-Entwickler zur Authentifikation (string)"
+        "unique_id": "Eindeutige Id des Mitarbeiters (int)",
+        "username": "Benutzername des Mitarbeiters (string)",
+        "password": "Password-Hash des Mitarbeiters zur Authentifikation (string)"
     },
     "Elements": {
         "1": {
