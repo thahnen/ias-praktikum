@@ -12,6 +12,21 @@ header {
     color: white;
 }
 
+svg>rect {
+    fill: #ffffff;
+    stroke: #000000;
+    stroke-width: 1;
+}
+
+svg>text {
+    font-size: 50%;
+    text-anchor: middle;
+}
+
+.rect--notSelectable {
+    fill: #ff0000;
+}
+
 .div--headline {
     position: absolute;
     width: 80vw;
