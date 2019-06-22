@@ -6,13 +6,8 @@
 */
 
 import SideBarView from "./sideBar.js";
-// import {ErrorQSMView, ErrorErkanntView, ErrorBehobenView, ErrorAddView} from "./errorView.js";
-// import {ProjectQSMView} from "./projectView.js";
-// import {ComponentQSMView, ComponentProjectView} from "./componentView.js";
-// import {QSMView} from "./workerView.js";
-// import {KatFehlerView, KatFehlerEditView, KatFehlerAddView} from "./categoryView.js";
-// import ErrorsByProjectView from "./errorsByProject.js";
-// import ErrorsByCategoryView from "./errorsByCategory.js"
+// import HomeView from "./homeViewAussteller.js";
+// import HallenView from "./hallenViewAussreller.js";
 
 
 class Application {
@@ -21,29 +16,13 @@ class Application {
         APPUTIL.eventService.subscribe(this, "templates.loaded");
         APPUTIL.eventService.subscribe(this, "templates.failed");
         APPUTIL.eventService.subscribe(this, "app.cmd");
+
         this.sideBarView = new SideBarView("aside", "sidebar.tpl");
-
-        // this.errorQSMView = new ErrorQSMView();
-        // this.errorErkanntView = new ErrorErkanntView();
-        // this.errorBehobenView = new ErrorBehobenView();
-        // this.errorAddView = new ErrorAddView();
-
-        // this.projectQSMView = new ProjectQSMView();
-
-        // this.componentQSMView = new ComponentQSMView();
-        // this.componentProjectView = new ComponentProjectView();
-
-        // this.qsmView = new QSMView();
-
-        // this.katFehlerView = new KatFehlerView();
-        // this.katFehlerEditView = new KatFehlerEditView();
-        // this.katFehlerAddView = new KatFehlerAddView();
-
-        // this.errorsByProjectView = new ErrorsByProjectView();
-        // this.errorsByCategoryView = new ErrorsByCategoryView();
+        // this.homeView = new HomeView();
+        // this.hallenView = new HallenView();
     }
 
-    notify (self, message, data) {
+    async notify (self, message, data) {
         switch (message) {
         case "templates.failed":
             alert("Vorlagen konnten nicht geladen werden.");
@@ -67,28 +46,56 @@ class Application {
             // TODO: Hallen dynamisch laden und alle Kommandos verfassen!
             let navigation = [
                 ["home", "Übersicht"]
-                // ["halle1", "Halle 1"] ...
             ];
+            
+            console.log("Bevor fetch");
+            let json = await fetch("/hallen").then(function(response) {
+                return response.json();
+            });
+            console.log("Nach fetch")
+
+            for (const id in json) {
+                if (json.hasOwnProperty(id)) {
+                    const element = json[id];
+                    navigation.push(["halle_" + element["unique_id"], "Halle " + element["unique_id"]]);
+                }
+            }
 
             self.sideBarView.render(navigation);
-            markup = APPUTIL.templateManager.execute("home-aussteller.tpl", null);
+            markup = APPUTIL.templateManager.execute("home.aussteller.tpl", null);
             html_element = document.querySelector("main");
 
-            if (html_element != null) html_element.innerHTML = markup;
+            if (markup != null && html_element != null) {
+                html_element.innerHTML = markup;
+            } else {
+                console.log("Initialization failed!");
+            }
+
+            // Das kommt in eine eigene JS-Datei!
+            // this.homeView.render();
             break;
         case "app.cmd":
             switch (data[0]) {
             case "home":
-                let markup = APPUTIL.templateManager.execute("home-aussteller.tpl", null);
+                let markup = APPUTIL.templateManager.execute("home.aussteller.tpl", null);
                 let html_element = document.querySelector("main");
 
                 if (html_element != null) html_element.innerHTML = markup;
-                break;
 
-            // Alle vorhandenen Hallen!
-            // case "halle1":
-            //     this.hallenView.render("halle1")
-            //     break;
+                // Das kommt in eine eigene JS-Datei!
+                // this.homeView.render();
+                break;
+            default:
+                // Einfach die Hallen laden zum anzeigen!
+                let hallen_nr = parseInt(data[0].split("_")[1]);
+                let markup1 = APPUTIL.templateManager.execute("hallen.aussteller.tpl", hallen_nr);
+                let html_element1 = document.querySelector("main");
+
+                if (html_element1 != null) html_element1.innerHTML = markup1;
+
+                // Das kommt in eine eigene JS-Datei!
+                // this.hallenView.render(hallen_nr)
+                break;
             }
         }
     }

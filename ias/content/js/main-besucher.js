@@ -1,13 +1,14 @@
 'use strict'
 
 /*
-    ANGEPASSTE VERSION FUER DIE MITARBEITER!
+    ANGEPASSTE VERSION FUER DIE Besucher!
     TODO: weitere Views anpassen + hinzufügen
 */
 
 import SideBarView from "./sideBar.js";
-// import HomeView from "./homeViewMitarbeiter.js";
-// import HallenView from "./hallenViewMitarbeiter.js";
+// import HallenView from "./hallenView.js";
+// import SearchView from "./searchView.js";
+import LoginView from "./loginView.js";
 
 
 class Application {
@@ -17,9 +18,10 @@ class Application {
         APPUTIL.eventService.subscribe(this, "templates.failed");
         APPUTIL.eventService.subscribe(this, "app.cmd");
 
-        this.sideBarView = new SideBarView("aside", "sidebar.tpl");
-        // this.homeView = new HomeView();
+        this.sideBarView = new SideBarView("aside", "sidebar.besucher.tpl");
         // this.hallenView = new HallenView();
+        // this.searchView = new SearchView();
+        this.loginView = new LoginView();
     }
 
     async notify (self, message, data) {
@@ -28,24 +30,16 @@ class Application {
             alert("Vorlagen konnten nicht geladen werden.");
             break;
         case "templates.loaded":
-            /*  Templates konnten geladen werden:
-                1) Header laden mit Inhalt des Cookies
-                2) Navigationsleiste laden mit vorgegebenen Seiten
-                3) Startseite laden (soll ein bisschen aussehen wie ein Dashboard) */
-            // Cookie-Aufbau: "password=<...>; type=<...>; username=<...>"
-            let cookie_data = [...document.cookie.split("; ")];
-            cookie_data.shift();
-            cookie_data = cookie_data.map(x => x.split("=")[1]);
-            console.log(cookie_data);
-
-            let markup = APPUTIL.templateManager.execute("header.tpl", cookie_data);
+            // Templates konnten geladen werden:
+            let markup = APPUTIL.templateManager.execute("header.besucher.tpl", null);
             let html_element = document.querySelector("header");
             html_element.innerHTML = markup;
 
             // Hier dann noch die einzelnen "Kommandos zu verfassen"
             // TODO: Hallen dynamisch laden und alle Kommandos verfassen!
             let navigation = [
-                ["home", "Übersicht"]
+                ["search", "Suchen"],
+                ["login", "Login"]
             ];
 
             console.log("Bevor fetch");
@@ -62,7 +56,7 @@ class Application {
             }
 
             self.sideBarView.render(navigation);
-            markup = APPUTIL.templateManager.execute("home.mitarbeiter.tpl", null);
+            markup = APPUTIL.templateManager.execute("hallen.besucher.tpl", 1);
             html_element = document.querySelector("main");
 
             if (markup != null && html_element != null) {
@@ -72,22 +66,26 @@ class Application {
             }
 
             // Das kommt in eine eigene JS-Datei!
-            // this.homeView.render();
+            // this.hallenView.render(1);
+            break;
         case "app.cmd":
             switch (data[0]) {
-            case "home":
-                let markup = APPUTIL.templateManager.execute("home.mitarbeiter.tpl", null);
+            case "search":
+                let markup = APPUTIL.templateManager.execute("search.tpl", null);
                 let html_element = document.querySelector("main");
-    
+
                 if (html_element != null) html_element.innerHTML = markup;
-    
+
                 // Das kommt in eine eigene JS-Datei!
-                // this.homeView.render();
+                // this.searchView.render();
+                break;
+            case "login":
+                this.loginView.render();
                 break;
             default:
                 // Einfach die Hallen laden zum anzeigen!
                 let hallen_nr = parseInt(data[0].split("_")[1]);
-                let markup1 = APPUTIL.templateManager.execute("hallen.mitarbeiter.tpl", hallen_nr);
+                let markup1 = APPUTIL.templateManager.execute("hallen.besucher.tpl", hallen_nr);
                 let html_element1 = document.querySelector("main");
 
                 if (html_element1 != null) html_element1.innerHTML = markup1;

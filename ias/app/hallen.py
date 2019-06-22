@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 #   Rückgabe und Bearbeitung der Hallen:
-#   =============================================================
+#   ===================================
 #
 #   1. GET /hallen/
 #   => Rückgabe einer Liste aller Hallen

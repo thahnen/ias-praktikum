@@ -7,6 +7,7 @@ from .database import *
 from .view import *
 from .templates import *
 from .hallen import *
+from .aussteller import *
 
 
 # Alle (wichtigen) Informationen

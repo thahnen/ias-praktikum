@@ -13,9 +13,6 @@
 #   - "/eval_logout" (Pseudo-Seite)
 #       => Hier wird jeder Nutzer ausgeloggt!
 #
-#   - "/login":
-#       => Hier wird sich angemeldet!
-#
 
 import os
 import cherrypy
@@ -42,21 +39,6 @@ class WebServer(object):
 
         self.application.setCookies(False)
         return self.application.get_static_page("mp-besucher")
-
-
-    # Login-Seite des Webservers, um sich zu authentifizieren
-    # TODO: kann bestimmt noch irgendwie zusammengefasst werden
-    @cherrypy.expose
-    def login(self) -> str:
-        # Auswertung Cookie falls vorhanden!
-        cookie = cherrypy.request.cookie
-        if "type" in cookie and "username" in cookie and "password" in cookie:
-            code, _, _ = self.application.eval_login(cookie["username"].value, cookie["password"].value, True)
-            if code == 200:
-                return self.application.get_static_page("back_to_homepage")
-
-        self.application.setCookies(False)
-        return self.application.get_static_page("back_to_homepage")
 
 
     # Nur POST-Verarbeitung der Benutzereingaben
@@ -108,6 +90,7 @@ if __name__ == '__main__':
 
     cherrypy.tree.mount(WebServer(logic), "/", config=config)
     cherrypy.tree.mount(app.Templates(logic), "/templates", config=config_rest)
+    cherrypy.tree.mount(app.Aussteller(logic), "/aussteller", config=config_rest)
     cherrypy.tree.mount(app.Hallen(logic), "/hallen", config=config_rest)
 
     cherrypy.engine.start()

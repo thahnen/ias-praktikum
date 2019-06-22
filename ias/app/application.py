@@ -107,7 +107,6 @@ class Application(object):
         elif unique_id == None and len(data) != 0:
             return [200, data]
 
-        # Spezielle Fehlerkategorie (falls vorhanden) zurückgeben
         for elem in data:
           if int(data[elem]["unique_id"]) == unique_id:
             return [200, data[elem]]
