@@ -1,7 +1,7 @@
 {
     "Template": {
         "unique_id": "Eindeutige Id der Halle (int)",
-        "area": "N x M Matrix (int). area[Zeile][Spalte]. Zahl > 0: Aussteller IDs. Zahl = 0: frei. Zahl < 0: gesperrt."
+        "area": "N x M Matrix (int). area[Zeile][Spalte]. Zahl > 0: Aussteller IDs. Zahl = 0: frei. Zahl < 0: gesperrt mit bestimmtem Objekt."
     },
     "Elements": {
         "1": {

@@ -11,7 +11,7 @@ export default class {
     render () {
         let markup = APPUTIL.templateManager.execute(this.template, null);
         let html_element = document.querySelector(this.name);
-        if (markup == null) {
+        if (markup == null || html_element == null) {
             alert("[SearchView] Template nicht renderbar!");
             return;
         }

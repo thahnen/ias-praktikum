@@ -6,7 +6,7 @@
 */
 
 import SideBarView from "./sideBar.js";
-// import HallenView from "./hallenView.js";
+import HallenView from "./hallenView.js";
 // import SearchView from "./searchView.js";
 import LoginView from "./loginView.js";
 
@@ -19,7 +19,7 @@ class Application {
         APPUTIL.eventService.subscribe(this, "app.cmd");
 
         this.sideBarView = new SideBarView("aside", "sidebar.besucher.tpl");
-        // this.hallenView = new HallenView();
+        this.hallenView = new HallenView();
         // this.searchView = new SearchView();
         this.loginView = new LoginView();
     }
@@ -56,17 +56,7 @@ class Application {
             }
 
             self.sideBarView.render(navigation);
-            markup = APPUTIL.templateManager.execute("hallen.besucher.tpl", 1);
-            html_element = document.querySelector("main");
-
-            if (markup != null && html_element != null) {
-                html_element.innerHTML = markup;
-            } else {
-                console.log("Initialization failed!");
-            }
-
-            // Das kommt in eine eigene JS-Datei!
-            // this.hallenView.render(1);
+            this.hallenView.render(1);
             break;
         case "app.cmd":
             switch (data[0]) {
@@ -85,13 +75,7 @@ class Application {
             default:
                 // Einfach die Hallen laden zum anzeigen!
                 let hallen_nr = parseInt(data[0].split("_")[1]);
-                let markup1 = APPUTIL.templateManager.execute("hallen.besucher.tpl", hallen_nr);
-                let html_element1 = document.querySelector("main");
-
-                if (html_element1 != null) html_element1.innerHTML = markup1;
-
-                // Das kommt in eine eigene JS-Datei!
-                // this.hallenView.render(hallen_nr)
+                this.hallenView.render(hallen_nr)
                 break;
             }
         }
