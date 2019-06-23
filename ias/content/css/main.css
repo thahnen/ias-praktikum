@@ -13,7 +13,7 @@ header {
     color: white;
 }
 
-svg {
+svg, form, #search {
     margin-left: 5vw;
     margin-top: 5vh;
 }

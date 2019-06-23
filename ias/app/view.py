@@ -2,9 +2,6 @@
 # -*- coding: utf-8 -*-
 
 
-# REVIEW: Fast alles über Annahmen (assert's), um Fehlerbehandlung kümmert sich die App!
-
-
 #   Zur Erstellung/ Generierung von (Web-)Seiten:
 #   ============================================
 #
@@ -17,8 +14,6 @@
 
 
 import os
-from mako.template import Template
-from mako.lookup import TemplateLookup
 
 
 class View(object):

@@ -2,12 +2,12 @@
 
 /*
     ANGEPASSTE VERSION FUER DIE Besucher!
-    TODO: weitere Views anpassen + hinzufügen
+    REVIEW: mehr oder weniger fertig!
 */
 
 import SideBarView from "./sideBar.js";
 import HallenView from "./hallenView.js";
-// import SearchView from "./searchView.js";
+import SearchView from "./searchView.js";
 import LoginView from "./loginView.js";
 
 
@@ -18,9 +18,9 @@ class Application {
         APPUTIL.eventService.subscribe(this, "templates.failed");
         APPUTIL.eventService.subscribe(this, "app.cmd");
 
-        this.sideBarView = new SideBarView("aside", "sidebar.besucher.tpl");
+        this.sideBarView = new SideBarView("sidebar.besucher.tpl");
         this.hallenView = new HallenView();
-        // this.searchView = new SearchView();
+        this.searchView = new SearchView();
         this.loginView = new LoginView();
     }
 
@@ -36,22 +36,18 @@ class Application {
             html_element.innerHTML = markup;
 
             // Hier dann noch die einzelnen "Kommandos zu verfassen"
-            // TODO: Hallen dynamisch laden und alle Kommandos verfassen!
             let navigation = [
                 ["search", "Suchen"],
                 ["login", "Login"]
             ];
 
-            console.log("Bevor fetch");
             let json = await fetch("/hallen").then(function(response) {
                 return response.json();
             });
-            console.log("Nach fetch")
 
             for (const id in json) {
                 if (json.hasOwnProperty(id)) {
-                    const element = json[id];
-                    navigation.push(["halle_" + element["unique_id"], "Halle " + element["unique_id"]]);
+                    navigation.push(["halle_" + json[id]["unique_id"], "Halle " + json[id]["unique_id"]]);
                 }
             }
 
@@ -61,13 +57,7 @@ class Application {
         case "app.cmd":
             switch (data[0]) {
             case "search":
-                let markup = APPUTIL.templateManager.execute("search.tpl", null);
-                let html_element = document.querySelector("main");
-
-                if (html_element != null) html_element.innerHTML = markup;
-
-                // Das kommt in eine eigene JS-Datei!
-                // this.searchView.render();
+                this.searchView.render();
                 break;
             case "login":
                 this.loginView.render();

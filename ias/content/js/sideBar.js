@@ -3,8 +3,8 @@
 'use strict';
 
 export default class {
-    constructor (name, template) {
-        this.elem_name = name;
+    constructor (template) {
+        this.elem_name = "aside";
         this.template_name = template;
         this.html_element = document.querySelector(this.elem_name);
 

@@ -17,7 +17,7 @@ class Application {
         APPUTIL.eventService.subscribe(this, "templates.failed");
         APPUTIL.eventService.subscribe(this, "app.cmd");
 
-        this.sideBarView = new SideBarView("aside", "sidebar.tpl");
+        this.sideBarView = new SideBarView("sidebar.tpl");
         // this.homeView = new HomeView();
         // this.hallenView = new HallenView();
     }

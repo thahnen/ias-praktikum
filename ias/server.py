@@ -25,7 +25,6 @@ class WebServer(object):
     
 
     # Index-Seite des Messeplaners
-    # TODO: anpassen Aussteller/ Mitarbeiter/ Besucher -> siehe eval_login in Application!
     @cherrypy.expose
     def index(self) -> str:
         # Auswertung Cookie (muss vorhanden sein)!

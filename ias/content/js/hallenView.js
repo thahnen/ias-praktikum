@@ -1,6 +1,7 @@
-// REVIEW: nicht fertig
+// REVIEW: mehr oder weniger fertig!
 
 import {hallen_zuordnung} from "./constants.js";
+
 
 export default class {
     constructor() {
@@ -16,7 +17,6 @@ export default class {
             alert("[SearchView] Template nicht renderbar!");
             return;
         }
-
         html_element.innerHTML = markup;
 
         // Hallen-Infos laden
@@ -33,10 +33,7 @@ export default class {
         for (let i = 0; i < halle["area"].length; i++) {
             for (let j = 0; j < halle["area"][i].length; j++) {
                 let id = halle["area"][i][j];
-                console.log(id + " i " + i + " j " + j);
-                if (id == 0) {
-                    continue;
-                }
+                if (id == 0) continue;
 
                 let type;
                 if (id > 0) {
@@ -45,7 +42,6 @@ export default class {
                     for (const aid in aussteller) {
                         if (aussteller.hasOwnProperty(aid) && !found) {
                             const elem = aussteller[aid];
-                            console.log(elem);
                             if (elem["unique_id"] == id) {
                                 type = elem["name"];
                                 found = true;
@@ -69,7 +65,6 @@ export default class {
 
                 let svg = document.getElementById("svg");
                 svg.appendChild(text_element);
-                console.log("Added");
             }
         }
     }
