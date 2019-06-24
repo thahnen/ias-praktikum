@@ -7,7 +7,7 @@
 
 import SideBarView from "./sideBar.js";
 // import HomeView from "./homeViewMitarbeiter.js";
-// import HallenView from "./hallenViewMitarbeiter.js";
+import HallenView from "./hallenViewMitarbeiter.js";
 
 
 class Application {
@@ -19,7 +19,7 @@ class Application {
 
         this.sideBarView = new SideBarView("sidebar.tpl");
         // this.homeView = new HomeView();
-        // this.hallenView = new HallenView();
+        this.hallenView = new HallenView();
     }
 
     async notify (self, message, data) {
@@ -87,13 +87,7 @@ class Application {
             default:
                 // Einfach die Hallen laden zum anzeigen!
                 let hallen_nr = parseInt(data[0].split("_")[1]);
-                let markup1 = APPUTIL.templateManager.execute("hallen.mitarbeiter.tpl", hallen_nr);
-                let html_element1 = document.querySelector("main");
-
-                if (html_element1 != null) html_element1.innerHTML = markup1;
-
-                // Das kommt in eine eigene JS-Datei!
-                // this.hallenView.render(hallen_nr)
+                this.hallenView.render(hallen_nr)
                 break;
             }
         }

@@ -16,10 +16,9 @@ export default class {
             alert("[SearchView] Template nicht renderbar!");
             return;
         }
-
         html_element.innerHTML = markup;
 
-        // Event-Handler für den "Suchen"-Knopf
+        // HTML-Elemente auf Verfügbarkeit prüfen
         let searchBtn = document.getElementById("searchBtn");
         let searchTxt = document.getElementById("searchTxt");
         if (searchBtn == null || searchTxt == null) {
@@ -27,6 +26,7 @@ export default class {
             return;
         }
 
+        // EventHandler für den Suchen-Knopf hinzufügen
         searchBtn.addEventListener("click", async function() {
             let name = searchTxt.value;
 
@@ -38,18 +38,16 @@ export default class {
             let found = false;
             let uid;
             for (const aid in aussteller) {
-                if (aussteller.hasOwnProperty(aid) && !found) {
-                    const elem = aussteller[aid];
-                    if (elem["name"] == name) {
-                        uid = elem["unique_id"];
-                        found = true;
-                    }
+                const elem = aussteller[aid];
+                if (elem["name"] == name) {
+                    uid = elem["unique_id"];
+                    found = true;
+                    break;
                 }
             }
 
             if (!found) {
-                // Irgendwie handhaben, dass da dann steht nicht gefunden oder so!
-                alert("Nicht gefunden!");
+                alert("[SearchView] Eigene Aussteller-Id nicht gefunden!");
                 return;
             }
             
@@ -60,14 +58,12 @@ export default class {
 
             let staende = [];
             for (const hid in hallen) {
-                if (hallen.hasOwnProperty(hid)) {
-                    const elem = hallen[hid];
-                    for (let i = 0; i < elem["area"].length; i++) {
-                        for (let j = 0; j < elem["area"][i].length; j++) {
-                            const platz = elem["area"][i][j];
-                            if (platz == uid) {
-                                staende.push([elem["unique_id"], "("+i+"|"+j+")"]);
-                            }
+                const elem = hallen[hid];
+                for (let i = 0; i < elem["area"].length; i++) {
+                    for (let j = 0; j < elem["area"][i].length; j++) {
+                        const platz = elem["area"][i][j];
+                        if (platz == uid) {
+                            staende.push([elem["unique_id"], "("+i+"|"+j+")"]);
                         }
                     }
                 }

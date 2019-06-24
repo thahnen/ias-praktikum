@@ -4,7 +4,7 @@ import {hallen_zuordnung} from "./constants.js";
 
 
 export default class {
-    constructor() {
+    constructor () {
         this.name = "main";
         this.template = "hallen.aussteller.tpl";
 
@@ -102,10 +102,8 @@ export default class {
 
                 if (!found) {
                     alert("[HallenViewAussteller] Unique-Id nicht gefunden!");
-                    
                     this.x_pos = null;
                     this.y_pos = null;
-                    
                     return;
                 }
             }.bind(this));

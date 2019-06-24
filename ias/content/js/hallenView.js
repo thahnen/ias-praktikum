@@ -4,7 +4,7 @@ import {hallen_zuordnung} from "./constants.js";
 
 
 export default class {
-    constructor() {
+    constructor () {
         this.name = "main";
         this.template = "hallen.besucher.tpl";
     }
