@@ -1,7 +1,7 @@
 <!--
-    Hallenplan (Besucher)
+    Hallenplan (Aussteller)
 -->
-<h1>Halle #context#</h1>
+<h1>Buchen: Halle #context#</h1>
 
 <div class="div--halle">
     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="svg" width="200mm" height="100mm" viewBox="0 0 200 100">
@@ -14,3 +14,5 @@
         @endfor@
     </svg>
 </div>
+
+<button id="buchenBtn">Ausgewählte Halle buchen</button>
