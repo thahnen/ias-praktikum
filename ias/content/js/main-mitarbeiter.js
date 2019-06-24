@@ -6,7 +6,7 @@
 */
 
 import SideBarView from "./sideBar.js";
-// import HomeView from "./homeViewMitarbeiter.js";
+import HomeView from "./homeViewMitarbeiter.js";
 // import HallenView from "./hallenViewMitarbeiter.js";
 
 
@@ -18,7 +18,7 @@ class Application {
         APPUTIL.eventService.subscribe(this, "app.cmd");
 
         this.sideBarView = new SideBarView("sidebar.tpl");
-        // this.homeView = new HomeView();
+        this.homeView = new HomeView();
         // this.hallenView = new HallenView();
     }
 
@@ -62,27 +62,15 @@ class Application {
             }
 
             self.sideBarView.render(navigation);
-            markup = APPUTIL.templateManager.execute("home.mitarbeiter.tpl", null);
-            html_element = document.querySelector("main");
-
-            if (markup != null && html_element != null) {
-                html_element.innerHTML = markup;
-            } else {
-                console.log("Initialization failed!");
-            }
-
-            // Das kommt in eine eigene JS-Datei!
-            // this.homeView.render();
+            
+            this.homeView.render();
+            
         case "app.cmd":
             switch (data[0]) {
             case "home":
-                let markup = APPUTIL.templateManager.execute("home.mitarbeiter.tpl", null);
-                let html_element = document.querySelector("main");
-    
-                if (html_element != null) html_element.innerHTML = markup;
-    
-                // Das kommt in eine eigene JS-Datei!
-                // this.homeView.render();
+            
+                this.homeView.render();
+                
                 break;
             default:
                 // Einfach die Hallen laden zum anzeigen!

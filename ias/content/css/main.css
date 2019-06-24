@@ -33,6 +33,10 @@ svg > text {
     fill: #ff0000;
 }
 
+.selectedRow {
+    background-color: blue;
+}
+
 .div--headline {
     position: absolute;
     width: 80vw;
