@@ -4,29 +4,25 @@
 
 export default class {
     constructor (template) {
-        this.elem_name = "aside";
-        this.template_name = template;
-        this.html_element = document.querySelector(this.elem_name);
+        this.name = "aside";
+        this.template = template;
+    }
 
-        if (this.html_element == null) {
-            alert("[SideBar] HTML-Element nicht gefunden!")
+    render (data) {
+        // Template laden & ausführen
+        let markup = APPUTIL.templateManager.execute(this.template, data);
+        let html_element = document.querySelector(this.name);
+        if (markup == null || html_element == null) {
+            alert("[LoginView] Template nicht renderbar!")
             return;
         }
+        html_element.innerHTML = markup;
 
-        this.html_element.addEventListener("click", function(event) {
+        // EventHandler für alle Menu-Elemente hinzufügen
+        html_element.addEventListener("click", function(event) {
             APPUTIL.eventService.publish("app.cmd", [
                 event.target.dataset.action, null
             ]);
         });
-    }
-
-    render (data) {
-        let markup = APPUTIL.templateManager.execute(this.template_name, data);
-        if (markup == null) {
-            alert("[SideBar] Template nicht renderbar!")
-            return;
-        }
-
-        this.html_element.innerHTML = markup;
     }
 }

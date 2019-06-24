@@ -4,7 +4,7 @@ import {hallen_zuordnung} from "./constants.js";
 
 
 export default class {
-    constructor() {
+    constructor () {
         this.name = "main";
         this.template = "hallen.besucher.tpl";
     }
@@ -14,7 +14,7 @@ export default class {
         let markup = APPUTIL.templateManager.execute(this.template, hallen_id);
         let html_element = document.querySelector(this.name);
         if (markup == null || html_element == null) {
-            alert("[SearchView] Template nicht renderbar!");
+            alert("[HallenView] Template nicht renderbar!");
             return;
         }
         html_element.innerHTML = markup;

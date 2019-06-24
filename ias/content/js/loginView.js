@@ -9,13 +9,13 @@ export default class {
     }
 
     render () {
+        // Template laden & ausführen
         let markup = APPUTIL.templateManager.execute(this.template, null);
         let html_element = document.querySelector(this.name);
         if (markup == null || html_element == null) {
             alert("[LoginView] Template nicht renderbar!")
             return;
         }
-
         html_element.innerHTML = markup;
     }
 }
