@@ -36,6 +36,7 @@ export default class {
                 if (id == 0) continue;
 
                 let type;
+                let farbe = hallen_zuordnung["buchbar"];
                 if (id > 0) {
                     // Aussteller -> Aussteller-Name suchen anhand der Id!
                     let found = false;
@@ -44,19 +45,23 @@ export default class {
                             const elem = aussteller[aid];
                             if (elem["unique_id"] == id) {
                                 type = elem["name"];
+                                farbe = hallen_zuordnung["gebucht"]
                                 found = true;
                             }
                         }
                     }
                     if (!found) {
-                        // Aussteller nicht in der Liste!
+                        // Aussteller nicht in der Liste! -> sollte nicht vorkommen
+                        // TODO: der Fall kann später entfernt oder durch Fehlerbehandlung ersetzt werden!
                         type = "NF!";
                     }
                 } else if (id < 0) {
                     // Irgendein Objekt -> Tabelle was, was ist!
-                    type = hallen_zuordnung[id];
+                    type = hallen_zuordnung[id][0];
+                    farbe = hallen_zuordnung[id][1];
                 }
 
+                // Neuen Text setzen
                 const NS = "http://www.w3.org/2000/svg"; // gleich wie svg->xmlns!
                 let text_element = document.createElementNS(NS, "text");
                 text_element.setAttributeNS(null, "x", 20*j+10);
@@ -65,6 +70,9 @@ export default class {
 
                 let svg = document.getElementById("svg");
                 svg.appendChild(text_element);
+
+                // Element einfärben
+                document.getElementById("r"+i+"c"+j).style.fill = farbe;
             }
         }
     }

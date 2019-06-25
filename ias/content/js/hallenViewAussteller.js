@@ -48,6 +48,7 @@ export default class {
                 };
 
                 let type;
+                let farbe = hallen_zuordnung["buchbar"];
                 if (id > 0) {
                     // Aussteller -> Aussteller-Name suchen anhand der Id!
                     let found = false;
@@ -57,6 +58,7 @@ export default class {
                             if (elem["unique_id"] == id) {
                                 type = elem["name"];
                                 this.type = elem["name"];
+                                farbe = hallen_zuordnung["gebucht"]
                                 found = true;
                             }
                         }
@@ -67,9 +69,11 @@ export default class {
                     }
                 } else if (id < 0) {
                     // Irgendein Objekt -> Tabelle was, was ist!
-                    type = hallen_zuordnung[id];
+                    type = hallen_zuordnung[id][0];
+                    farbe = hallen_zuordnung[id][1];
                 }
 
+                // Neuen Text setzen
                 const NS = "http://www.w3.org/2000/svg"; // gleich wie svg->xmlns!
                 let text_element = document.createElementNS(NS, "text");
                 text_element.setAttributeNS(null, "x", 20*j+10);
@@ -78,6 +82,9 @@ export default class {
 
                 let svg = document.getElementById("svg");
                 svg.appendChild(text_element);
+
+                // Element einfärben
+                document.getElementById("r"+i+"c"+j).style.fill = farbe;
             }
         }
 
@@ -106,6 +113,11 @@ export default class {
                     this.y_pos = null;
                     return;
                 }
+
+                alert("Fläche: (" + this.x_pos + "|" + this.y_pos + ") ausgewählt!")
+
+                // TODO: kann man noch machen, dafür muss vorher aber altes (wenn vorhanden) neu eingefärbt werden!
+                //document.getElementById("r"+this.y_pos+"c"+this.x_pos).style.fill = hallen_zuordnung["markiert"];
             }.bind(this));
         });
 
@@ -127,23 +139,11 @@ export default class {
                 }
             }).then(response => {
                 if (response.status == 200) {
-                    // Wenn erfolgreich, neuen Text setzen
-                    const NS = "http://www.w3.org/2000/svg"; // gleich wie svg->xmlns!
-                    let text_element = document.createElementNS(NS, "text");
-                    text_element.setAttributeNS(null, "x", this.x_pos*20+10);
-                    text_element.setAttributeNS(null, "y", this.y_pos*20+10);
-                    text_element.appendChild(document.createTextNode(this.type));
-
-                    let svg = document.getElementById("svg");
-                    svg.appendChild(text_element);
-
-                    // HTML-Klasse entfernen
-                    let rect = document.getElementById("r"+this.y_pos+"c"+this.x_pos);
-                    rect.classList.remove("buchbar");
-
                     this.x_pos = null;
                     this.y_pos = null;
                     this.uid = null;
+
+                    this.render(hallen_id);
                     return;
                 }
 

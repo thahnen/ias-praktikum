@@ -62,15 +62,14 @@ class Application {
             }
 
             self.sideBarView.render(navigation);
-            
             this.homeView.render();
-            
         case "app.cmd":
+            // Kann irgendwie auftreten, aber warum weiss ich selbst nicht!
+            if (data == null) return;
+
             switch (data[0]) {
             case "home":
-            
                 this.homeView.render();
-                
                 break;
             default:
                 // Einfach die Hallen laden zum anzeigen!
