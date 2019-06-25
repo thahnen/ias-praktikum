@@ -13,6 +13,18 @@ header {
     color: white;
 }
 
+.container {
+  display: grid;
+  grid-template-column: auto auto;
+}
+
+.tabelle1 {
+  grid-column: 1 / 2;
+}
+.tabelle2 {
+  grid-column: 2 / 2;
+}
+
 svg, form, #search {
     margin-left: 5vw;
     margin-top: 5vh;
