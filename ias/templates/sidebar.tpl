@@ -4,14 +4,14 @@
 		Jeweilige Aktion (unterschiedliche bei den verschiedenen Gruppen!)
 
 		Aussteller:		Übersicht -> Übersicht seiner Buchungen
-		Mitarbeiter:	Überishct -> Übersicht aller Buchungen
+		Mitarbeiter:	Übersicht -> Übersicht aller Buchungen
 	-->
 	<li>
 		<a href="##" data-action="#context[0][0]#">#context[0][1]#</a>
 	</li>
 
 	<!-- Auflistung aller vorhandenen Hallen! -->
-	<p> Alle Hallen: </p>
+	<p> Bearbeiten: </p>
 	
 @var entry;@
 @var loop;@

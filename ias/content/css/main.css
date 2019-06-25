@@ -1,33 +1,149 @@
 * { box-sizing: border-box; }
 
+/* Everything */
 body {
     margin: 0;
     padding: 0;
 }
 
+/*
+    Header 
+*/
 header {
     position: absolute;
-    height: 15vh;
+    height: 10vh;
     width: 100%;
     background-color: blue;
     color: white;
 }
 
+.div--headline {
+    position: absolute;
+    width: 80vw;
+    height: inherit;
+    background-color: inherit;
+    border-bottom: 2px solid black;
+}
+
+.div--logout {
+    position: absolute;
+    left: 80vw;
+    width: 20vw;
+    height: inherit;
+    background-color: inherit;
+    border-bottom: 2px solid black;
+}
+
+
+/*
+    Navigation
+*/
+aside {
+    position: absolute;
+    top: 10vh;
+    left: 0;
+    width: 20vw;
+    bottom: 0;
+    background-color: lightgrey;
+    color: blue;
+    border-right: 2px solid black;
+}
+
+
+/*
+    Content
+*/
+ main {
+    position: absolute;
+    top: 10vh;
+    left: 20vw;
+    right: 0;
+    bottom: 0;
+}
+
+/* Visitor */
+/* 1) Search-Page */
+.div--search {
+    margin-left: 5vw;
+    display: grid;
+    grid-template-rows: 10vh 10vh 60vh;
+    grid-template-columns: 10vw 55vw 10vw;
+}
+
+.div--header {
+    grid-row: 1;
+    grid-column: 2;
+}
+
+.div--search--elements {
+    grid-row: 2;
+    grid-column: 2;
+}
+
+.div--results {
+    grid-row: 3;
+    grid-column: 2;
+}
+
+/* 2) Login-Page */
+.div--login {
+    margin-left: 5vw;
+    display: grid;
+    grid-template-rows: 20vh 40vh 20vh;
+    grid-template-columns: 10vw 55vw 10vw;
+}
+
+.form--login {
+    grid-row: 2;
+    grid-column: 2;
+}
+
+/* 3) Hall-Overview-Page*/
+.div--hallen--besucher {
+    margin-left: 5vw;
+}
+
+.div--halle {
+    font-size: 50%;
+    margin-top: 5vh;
+}
+
+/* Exhibitor */
+/* 1) Home-Page */
+
+/* 2) Hall-Booking-Page*/
+.div--hallen--aussteller {
+    margin-left: 5vw;
+}
+
+.div--controls {
+    margin-top: 5vh;
+}
+
+/* Employee */
+/* 1) Home-Page */
+
+/* 2) Hall-Edit-Page */
+.div--hallen--mitarbeiter {
+    margin-left: 5vw;
+}
+
+
+/*
+    HIER IST ALLES MÖGLICHE NOCH UNSORTIERT
+    TODO: sortieren
+*/
+
 .container {
   display: grid;
-  grid-template-column: auto auto;
+  grid-template-columns: auto auto;
 }
 
 .tabelle1 {
-  grid-column: 1 / 2;
+  grid-column: 1;
 }
 .tabelle2 {
-  grid-column: 2 / 2;
-}
-
-svg, form, #search {
-    margin-left: 5vw;
-    margin-top: 5vh;
+  grid-column: 2;
 }
 
 svg > rect {
@@ -49,42 +165,6 @@ svg > text {
     background-color: blue;
 }
 
-.div--headline {
-    position: absolute;
-    width: 80vw;
-    height: inherit;
-    background-color: inherit;
-    border-bottom: 2px solid black;
-}
-
 h1 { margin-left: 0.5vw; }
-
-.div--logout {
-    position: absolute;
-    left: 80vw;
-    width: 20vw;
-    height: inherit;
-    background-color: inherit;
-    border-bottom: 2px solid black;
-}
-
-aside {
-   position: absolute;
-   top: 15vh;
-   left: 0;
-   width: 20vw;
-   bottom: 0;
-   background-color: lightgrey;
-   color: blue;
-   border-right: 2px solid black;
-}
-
-main {
-   position: absolute;
-   top: 15vh;
-   left: 20vw;
-   right: 0;
-   bottom: 0;
-}
 
 table, th, td { border: 1px solid gray; }

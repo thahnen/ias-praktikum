@@ -9,7 +9,7 @@
         <h2 id="header">Suchen...</h2>
     </div>
 
-    <div class="div--search">
+    <div class="div--search--elements">
         <input id="searchTxt" />
         <button id="searchBtn">Suchen ></button>
     </div>
