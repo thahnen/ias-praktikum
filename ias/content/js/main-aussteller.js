@@ -42,17 +42,14 @@ class Application {
             let html_element = document.querySelector("header");
             html_element.innerHTML = markup;
 
-            // Hier dann noch die einzelnen "Kommandos zu verfassen"
-            // TODO: Hallen dynamisch laden und alle Kommandos verfassen!
+            // Elemente der Seitenleiste setzen
             let navigation = [
                 ["home", "Übersicht"]
             ];
             
-            console.log("Bevor fetch");
             let json = await fetch("/hallen").then(function(response) {
                 return response.json();
             });
-            console.log("Nach fetch")
 
             for (const id in json) {
                 if (json.hasOwnProperty(id)) {
@@ -61,13 +58,11 @@ class Application {
                 }
             }
 
+            // Seitenleiste und erste Seite rendern
             self.sideBarView.render(navigation);
             this.homeView.render();
             break;
         case "app.cmd":
-            // Kann irgendwie auftreten, aber warum weiss ich selbst nicht!
-            if (data == null) return;
-            
             switch (data[0]) {
             case "home":
                 this.homeView.render();

@@ -20,9 +20,13 @@ export default class {
 
         // EventHandler für alle Menu-Elemente hinzufügen
         html_element.addEventListener("click", function(event) {
-            APPUTIL.eventService.publish("app.cmd", [
-                event.target.dataset.action, null
-            ]);
+            let action = event.target.dataset.action;
+            
+            if (action != null) {
+                APPUTIL.eventService.publish("app.cmd", [
+                    action, null
+                ]);
+            }
         });
     }
 }

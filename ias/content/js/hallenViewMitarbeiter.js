@@ -143,6 +143,8 @@ export default class {
                     this.x_pos = null;
                     this.y_pos = null;
 
+                    // Rekursiver Aufruf ich weiss, aber erspart einiges an frickeliger Schreibarbeit!
+                    // TODO: ggf alle EventHandler-Deklarationen aus "render" in Konstruktor packen
                     this.render(hallen_id);
                     return;
                 }

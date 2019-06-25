@@ -1,5 +1,7 @@
 // Just constants for the plans!
 
+const NS = "http://www.w3.org/2000/svg"; // gleich wie svg->xmlns!
+
 const hallen_zuordnung = {
     "buchbar" : "#ffffff",
     "markiert" : "#888888",
@@ -9,4 +11,4 @@ const hallen_zuordnung = {
     "-3" : ["WC", "#6d6698"],
 };
 
-export {hallen_zuordnung};
+export {hallen_zuordnung, NS};

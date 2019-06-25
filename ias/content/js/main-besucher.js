@@ -35,7 +35,7 @@ class Application {
             let html_element = document.querySelector("header");
             html_element.innerHTML = markup;
 
-            // Hier dann noch die einzelnen "Kommandos zu verfassen"
+            // Elemente der Seitenleiste setzen
             let navigation = [
                 ["search", "Suchen"],
                 ["login", "Login"]
@@ -51,13 +51,11 @@ class Application {
                 }
             }
 
+            // Seitenleiste und erste Seite rendern
             self.sideBarView.render(navigation);
             this.hallenView.render(1);
             break;
         case "app.cmd":
-            // Kann irgendwie auftreten, aber warum weiss ich selbst nicht!
-            if (data == null) return;
-            
             switch (data[0]) {
             case "search":
                 this.searchView.render();

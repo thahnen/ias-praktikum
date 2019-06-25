@@ -11,7 +11,6 @@ export default class {
         this.x_pos = null;
         this.y_pos = null;
         this.uid = null;
-        this.type = null;
     }
 
     async render (hallen_id) {
@@ -42,6 +41,7 @@ export default class {
             for (let j = 0; j < halle["area"][i].length; j++) {
                 let id = halle["area"][i][j];
                 if (id == 0) {
+                    // Alle freien Flächen zur Buchung freigeben!
                     let rect = document.getElementById("r"+i+"c"+j);
                     rect.classList.add("buchbar");
                     continue;
@@ -57,7 +57,6 @@ export default class {
                             const elem = aussteller[aid];
                             if (elem["unique_id"] == id) {
                                 type = elem["name"];
-                                this.type = elem["name"];
                                 farbe = hallen_zuordnung["gebucht"]
                                 found = true;
                             }
@@ -143,6 +142,8 @@ export default class {
                     this.y_pos = null;
                     this.uid = null;
 
+                    // Rekursiver Aufruf ich weiss, aber erspart einiges an frickeliger Schreibarbeit!
+                    // TODO: ggf alle EventHandler-Deklarationen aus "render" in Konstruktor packen
                     this.render(hallen_id);
                     return;
                 }

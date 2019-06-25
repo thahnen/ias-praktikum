@@ -22,7 +22,7 @@ export default class {
         let searchBtn = document.getElementById("searchBtn");
         let searchTxt = document.getElementById("searchTxt");
         if (searchBtn == null || searchTxt == null) {
-            alert("[SearchView] HTML-Element nicht gefunden!");
+            alert("[SearchView] HTML-Elemente nicht gefunden!");
             return;
         }
 
