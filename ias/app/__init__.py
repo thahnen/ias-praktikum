@@ -11,11 +11,10 @@ from .aussteller import *
 
 
 # Alle (wichtigen) Informationen
-__version__ = "1.0.0"
+__version__ = "1.1.0"
 __title__ = "app"
 __summary__ = "Funktionalität des Messe-Planers"
 __doc__ = "Dokumentation siehe Ordner /doc/"
-# Link noch nicht erreichbar, da Repo privat
 __uri__ = "https://github.com/thahnen/ias-praktikum"
 
 __author__ = "Tobias Hahnen"

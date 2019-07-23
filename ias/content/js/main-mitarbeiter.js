@@ -2,7 +2,7 @@
 
 /*
     ANGEPASSTE VERSION FUER DIE MITARBEITER!
-    TODO: weitere Views anpassen + hinzufügen
+    REVIEW: mehr oder weniger fertig!
 */
 
 import SideBarView from "./sideBar.js";

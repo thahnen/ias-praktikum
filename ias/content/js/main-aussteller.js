@@ -2,7 +2,7 @@
 
 /*
     ANGEPASSTE VERSION FUER DIE AUSSTELLER!
-    TODO: weitere Views anpassen + hinzufügen
+    REVIEW: mehr oder weniger fertig!
 */
 
 import SideBarView from "./sideBar.js";
@@ -46,7 +46,7 @@ class Application {
             let navigation = [
                 ["home", "Übersicht"]
             ];
-            
+
             let json = await fetch("/hallen").then(function(response) {
                 return response.json();
             });
